@@ -39,7 +39,7 @@ void quickSort(int list[], int start, int end) {
         while (j > start && list[j] >= list[key]) j--, compare_count++;
 
         if (i > j) { swap(&list[key], &list[j]); move_count++; }
-        else swap(&list[i], &list[j]);
+        else { swap(&list[i], &list[j]); move_count++; }
     }
     if(once==0)print_all(list);
 
@@ -62,17 +62,21 @@ void quickSortCycle() {
     int n = MAX;
     int list[MAX];
 
+    //초기값 list 랜덤 생성 
     if (once == 0)printf("초기값\n");
     for (i = 0; i < n; i++) {
         list[i] = rand() % 100;
         if (once == 0)printf("%d->", list[i]);
 
     }
+
     if (once == 0) {
         printf("\n");
         printf("\n");
     }
+    //정렬시작
     quickSort(list, 0, n - 1);
+    //카운트 출력
     if (once == 0) {
         printf("compare count : %d\n", compare_count);
         printf("move count : %d\n", move_count);
@@ -93,7 +97,7 @@ void main() {
         quickSortCycle();
     }
 
-
+    //평균 카운트  출력 
     printf(" compare count avg:%f\n ", (float)c_total / (float)20);
     printf("move count avg:%f\n ", (float)m_total / (float)20);
 
